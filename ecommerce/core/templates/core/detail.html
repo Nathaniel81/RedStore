@@ -1,0 +1,99 @@
+{% extends 'core/base.html' %}
+{% block title %}Product detail {% endblock %}
+
+{% block content %}
+<div class="small-container single-product">
+	<div class="row">
+		<div class="col-2">
+			<img src="{{ item.imageURL1 }}" alt="" width="100%" id="product-img">
+			<div class="small-img-row">
+				<div class="small-img-col">
+					<img src="{{ item.imageURL1 }}" alt="" class="small-img">
+				</div>
+				<div class="small-img-col">
+					<img src="{{ item.imageURL2 }}" alt="" class="small-img">
+				</div>
+				<div class="small-img-col">
+					<img src="{{ item.imageURL3 }}" alt="" class="small-img">
+				</div>
+				<div class="small-img-col">
+					<img src="{{ item.imageURL4 }}" alt="" class="small-img">
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<p>Home / {{ item.name }}</p>
+			<h1>{{ item.name }}</h1>
+			<h4>Price: <span style="font-weight: lighter;">${{ item.price }}</span></h4>
+			<h4>Seller: <a href="{% url 'profile' item.created_by.id %}" id="SellerLink">{{ item.created_by }}</a></h4>
+			
+			
+			<!-- <select>
+				<option>Select Size</option>
+				<option>XXL</option>
+				<option>XL</option>
+				<option>Large</option>
+				<option>Medium</option>
+				<option>Small</option>
+			</select> -->
+			<!-- <input type="number" value="1"> -->
+			{% if request.user == item.created_by %}
+				<h3>This is your item!</h3>
+				<a href="{% url 'edit' item.id %}" class="btn" style="background: #38a169; transition: background 0.3s;" onmouseover="this.style.background='#563434';" onmouseout="this.style.background='#38a169';">
+					Edit
+				</a>  
+				<a href="{% url 'delete' item.id %}" class="btn">Delete</a>
+			{% else %}
+				<a href="{% url 'new-convo' item.id %}" class="btn">Contact Seller</a>
+
+			{% endif %}
+				<!-- <h3>Product Details<i class="fa fa-indent"></i></h3> -->
+			<br>
+			{% if item.description %}
+				<h4>Description:</h4>
+					<p>{{ item.description }}</p>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+<div class="small-container">
+	<div class="row row-2">
+		<h2>Related Products</h2>
+		<p>View More</p>
+	</div>
+</div>
+
+<div class="small-container">
+
+		<div class="row">
+		{% for item in related_items %}
+			<div class="col-4">
+				<img src="{{ item.imageURL1 }}" alt="">
+				<h4>{{ item.name }}</h4>
+				<!-- <div class="rating">
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star-o"></i>
+				</div> -->
+				<p>${{ item.price }}</p>
+			</div>
+		{% endfor %}
+		</div>
+</div>
+
+<script>
+	var productImg = document.getElementById("product-img");
+	var smallImg = document.getElementsByClassName("small-img");
+	
+	for (let i = 0; i < smallImg.length; i++) {
+		smallImg[i].onclick = function() {
+			productImg.src = smallImg[i].src;
+		}
+	}
+</script>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Sign Up {% endblock %}
+
+{% block content %}
+
+<div class="account-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-2">
+				<!-- <img src="images/image1.png" alt="" width="100%"> -->
+				<img src="{% static 'images/Sign up-cuate.png' %}" height="600px">
+			</div>
+			<div class="col-2">
+				<div class="form-container">
+					<div class="form-btn">
+						<span>Register</span>
+						<!-- <span onclick="register()">Register</span> -->
+						<hr id="Indicator">
+					</div>
+					<form id="RegForm" method="post" action=".">
+						{% csrf_token %}
+						{{ form.username }}
+						{{ form.email }}
+						{{ form.password1 }}
+						{{ form.password2 }}
+						{% if form.errors or form.non_field_errors %}
+							<div class="errors">
+								{% for field in form %}
+									{{ field.errors }}
+								{% endfor %}
+							
+								{{ form.non_field_errors }}
+							</div>
+						{% endif %}
+			
+						<button type="submit" class="btn">SIGN UP</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- <script>
+	var LoginForm = document.getElementById("LoginForm");
+	var RegForm = document.getElementById("RegForm");
+	var Indicator = document.getElementById("Indicator");
+
+	function register() {
+		RegForm.style.transform = "translateX(0px)";
+		LoginForm.style.transform = "translateX(0px)";
+		Indicator.style.transform = "translateX(100px)";
+	}
+	function login() {
+		RegForm.style.transform = "translateX(300px)";
+		LoginForm.style.transform = "translateX(300px)";
+		Indicator.style.transform = "translateX(0px)";
+	}
+
+</script> -->
+{% endblock %}

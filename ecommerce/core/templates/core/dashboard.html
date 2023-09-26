@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+{% block title %}Dashboard {% endblock %}
+
+{% block content %}
+<div class="small-container">
+    <div class="row row-2">
+        <h2 id="pTitle">{{ selected_category_name }}</h2>
+        <select id="categorySelect">
+            <option value="" data-url="{% url 'products' %}">All Items</option>
+            {% for category in categories %}
+                <option value="{{ category.id }}" data-title="{{ category.name }}" data-url="{% url 'products' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="row">
+        {% for item in items %}
+        <div class="col-4">
+            <a href="{% url 'detail' item.id %}">
+                <img src="{{ item.imageURL1 }}" alt="">
+                <h4>{{ item.name }}</h4>
+                <p>${{ item.price }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="page-btn">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>&#8594;</span>
+    </div>
+</div>
+<script>
+    const categorySelect = document.getElementById("categorySelect");
+
+    // Function to set the selected option based on query parameters
+    function setSelectedOption() {
+        const queryParams = new URLSearchParams(window.location.search);
+        const categoryParam = queryParams.get("category");
+
+        for (const option of categorySelect.options) {
+            if (option.value === categoryParam) {
+                option.selected = true;
+                return;
+            }
+        }
+
+        // If no category param is found, select "All Items"
+        categorySelect.value = "";
+    }
+
+    // Initial selection based on query parameters
+    setSelectedOption();
+
+    categorySelect.addEventListener("change", function () {
+        const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+        const selectedUrl = selectedOption.getAttribute("data-url");
+
+        if (selectedUrl) {
+            window.location.href = selectedUrl;
+        }
+    });
+</script>
+{% endblock %}

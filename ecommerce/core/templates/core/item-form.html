@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block title %}{{ title }} {% endblock %}
+
+{% block content %}
+
+    <!-- <h1 class="form-title">Title</h1> -->
+	<div class="item-form-ctnr">
+		<form method="post" action="{% if pk %}{% url 'edit' pk=pk %}{% else %}{% url 'new' %}{% endif %}" enctype="multipart/form-data" class="item-form">
+			{% csrf_token %}
+	
+			<div class="item-form-inputs">
+				{{ form.as_p }}
+			</div>
+	
+			{% if form.errors or form.non_field_errors %}
+				<div class="errors">
+					{% for field in form %}
+						{{ field.errors }}
+					{% endfor %}
+	
+					{{ form.non_field_errors }}
+				</div>
+			{% endif %}
+	
+			<button class="item-form-btn">Submit</button>
+		</form>
+	</div>
+	
+{% endblock %}

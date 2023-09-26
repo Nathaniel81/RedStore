@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Login {% endblock %}
+
+{% block content %}
+
+<div class="account-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-2">
+				<!-- <img src="{% static 'images/cyber-monday-retail-sales-fotor-20230921132310R.jpg' %}" class="larger-image"> -->
+				<img src="{% static 'images/Tablet login-amico.png' %}" height="600px">
+			</div>
+			<div class="col-2">
+				<div class="form-container">
+					<div class="form-btn">
+						<span>Login</span>
+						<!-- <span onclick="register()">Register</span> -->
+						<hr id="Indicator">
+					</div>
+					<form id="LoginForm" method="post" action=".">
+						{% csrf_token %}
+						<input id="username" name="username" type="text" placeholder="Username"/>
+						<input id="password" name="password" type="password">
+						<button type="submit" class="btn">Login</button>
+						<a href="">Reset password</a><br>
+						<a href="{% url 'signup' %}" style="color: #ff523b;">Sign Up Now</a>
+						{% if form.errors or form.non_field_errors %}
+							<div class="errors">
+								{% for field in form %}
+									{{ field.errors }}
+								{% endfor %}
+							
+								{{ form.non_field_errors }}
+							</div>
+						{% endif %}
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<!-- <form class="form" action="" method="POST">
+	{% csrf_token %}
+	<div class="form__group form__group">
+	  <label for="room_name">Email</label>
+	  <input id="username" name="email" type="email" placeholder="e.g. dennis_ivy@email.com />
+	</div>
+	<div class=" form__group">
+	  <label for="password">Password</label>
+	  <input id="password" name="password" type="password"
+		placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+	</div> -->
+<!-- <script>
+	var LoginForm = document.getElementById("LoginForm");
+	var RegForm = document.getElementById("RegForm");
+	var Indicator = document.getElementById("Indicator");
+
+	function register() {
+		RegForm.style.transform = "translateX(0px)";
+		LoginForm.style.transform = "translateX(0px)";
+		Indicator.style.transform = "translateX(100px)";
+	}
+	function login() {
+		RegForm.style.transform = "translateX(300px)";
+		LoginForm.style.transform = "translateX(300px)";
+		Indicator.style.transform = "translateX(0px)";
+	}
+
+</script> -->
+{% endblock %}
