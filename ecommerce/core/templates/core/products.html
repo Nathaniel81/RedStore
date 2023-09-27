@@ -40,7 +40,11 @@
             {% if items.number == num %}
                 <span class="current">{{ num }}</span>
             {% else %}
-                <span><a href="?page={{ num }}" class="page-link">{{ num }}</a></span>
+            <a href="?page={{ num }}" class="page-link">
+                <span>
+                    {{ num }}
+                </span>
+            </a>
             {% endif %}
         {% endfor %}
         <br><br>

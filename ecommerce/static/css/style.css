@@ -393,9 +393,55 @@ select option:checked {
     font-weight: bold;
 }
 
+.plus-sign {
+    font-size: 24px;
+    color: #ff523b;
+    transition: content 0.3s;
+    padding: 25px;
+    display: inline-block;
+}
+
+.add-item-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #ff523b;
+    cursor: pointer;
+    position: relative; /* Add this */
+}
+
+.description {
+    position: absolute;
+	width: 100px;
+    top: 120%;
+    left: 70%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #ff523b;
+    opacity: 0; /* Hide it by default */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.add-item-button:hover .description {
+    opacity: 1; /* Show it on hover */
+}
+
+
+.add-item-button:hover {
+	background: #e33b29;
+}
+
+.plus-sign:hover {
+	color: #fff;
+}
+
 .page-btn {
 	margin: 0 auto 80px;
 }
+
 .page-btn span {
 	display: inline-block;
 	border: 1px solid #ff523b;
@@ -444,6 +490,16 @@ select option:checked {
 	transform: translateY(-10px);
 }
 
+/* .add-item-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ff523b;
+    cursor: pointer;
+} */
 
 .single-product {
 	margin-top: 80px;
@@ -606,11 +662,13 @@ form a{
 	background-color: #ff523b;;
 	color: #FFFFFF;
 	border-radius: 1rem;
-	outline: none;
+	border: none;
+	cursor: pointer;
+	
 }
 
 .item-form-btn:hover {
-	background-color: #ff523b;;
+	background-color: #e33b29;
 }
 
 /* styles.css */
@@ -880,11 +938,6 @@ conv-btn:focus {
     nav ul li a {
         color: #fff;
     }
-	/* .hidden-nav {
-		display: inline-block;
-		color: #fff;
-	} */
-	
 
     .menu-icon {
         display: block;
@@ -896,10 +949,17 @@ conv-btn:focus {
 
     }
 
-
     .user-dropdown:hover {
         display: None;
     }
+	.search-box input[type="text"] {
+        width: 100%;
+    }
+    
+    .search-box button[type="submit"] {
+        width: 100%;
+        margin-top: 10px;
+    }	
 }
 
 

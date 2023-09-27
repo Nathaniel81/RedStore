@@ -3,15 +3,25 @@
 
 {% block content %}
 <div class="small-container">
-    <div class="row row-2">
-        <h2 id="pTitle">{{ selected_category_name }}</h2>
-        <select id="categorySelect">
-            <option value="" data-url="{% url 'products' %}">All Items</option>
-            {% for category in categories %}
-                <option value="{{ category.id }}" data-title="{{ category.name }}" data-url="{% url 'products' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</option>
-            {% endfor %}
-        </select>
+	<div class="search-box">
+        <form action="{% url 'products' %}" method="get">
+            <input type="text" name="query" placeholder="Search for items" value="{{ query }}">
+            <button type="submit" class="btn">Search</button>
+        </form>
     </div>
+    <div class="row row-2">
+        <div>
+            <h2 id="pTitle">{{ selected_category_name }}</h2>
+        </div>
+        <div class="add-item-button">
+            <a href="{% url 'new' %}">
+                <span class="plus-sign">+</span>
+            </a>
+            <span class="description">Add an item</span>
+        </div>
+    </div>
+    
+
     <div class="row">
         {% for item in items %}
         <div class="col-4">
@@ -24,11 +34,51 @@
         {% endfor %}
     </div>
     <div class="page-btn">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>&#8594;</span>
+        <!-- <span class="current">Page {{ items.number }} of {{ items.paginator.num_pages }}</span> -->
+        <!-- {% if items.has_previous %}
+            <a href="?page=1" class="page-link">&laquo; First</a>
+            <a href="?page={{ items.previous_page_number }}" class="page-link">Previous</a>
+        {% endif %} -->
+        
+        {% for num in items.paginator.page_range %}
+            {% if items.number == num %}
+                <span class="current">{{ num }}</span>
+            {% else %}
+            <a href="?page={{ num }}" class="page-link">
+                <span>
+                    {{ num }}
+                </span>
+            </a>
+            {% endif %}
+        {% endfor %}
+        <br><br>
+        {% if items.has_previous %}
+        <!-- <a href="?page=1" class="page-link">&laquo; First</a> -->
+        <a href="?page={{ items.previous_page_number }}" class="page-link prev-link">&laquo;  Prev</a>
+        {% endif %}
+
+        {% if items.has_next %}
+            <a href="?page={{ items.next_page_number }}" class="page-link next-link">Next  &raquo;</a>
+            <!-- <a href="?page={{ items.paginator.num_pages }}" class="page-link">Last &raquo;</a> -->
+        {% endif %}
+    </div>
+    
+    
+    <div class="categories">
+        <div class="small-container">
+            <h2 class="title">Categories</h2>
+            <div class="row">
+                {% for category in categories %}
+				<a href="{% url 'products' %}?query={{ query }}&category={{ category.id }}"
+				data-category="{{ category.name }}" class="category-link">
+                	<div id="categoryBox" class="col-3">
+                	    {{ category.name }}
+						<p>{{ category.items.count }} {{ category.items.count|pluralize:"Item,Items" }}</p>
+					</div>
+				</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 <script>
