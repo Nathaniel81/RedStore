@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -44,8 +45,23 @@ def products(request):
         selected_category_name = category.name
     if query:
         items = Item.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
-        
-    context = {'items':items, 'query':query, 'categories':categories, 'selected_category_name': selected_category_name, 'category_id':category_id}
+    
+    items_per_page = 1
+    page_number = request.GET.get('page', 1)
+    p = Paginator(items, items_per_page)
+    
+    try:
+        page = p.page(page_number)
+    except EmptyPage:
+        page = p.page(1)
+
+    context = {
+        'items': page,
+        'query': query,
+        'categories': categories,
+        'selected_category_name': selected_category_name,
+        'category_id': category_id,
+    }
     
     return render(request, 'core/products.html', context)
 

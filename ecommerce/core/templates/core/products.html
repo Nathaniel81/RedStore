@@ -30,12 +30,32 @@
         {% endfor %}
     </div>
     <div class="page-btn">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>&#8594;</span>
+        <!-- <span class="current">Page {{ items.number }} of {{ items.paginator.num_pages }}</span> -->
+        <!-- {% if items.has_previous %}
+            <a href="?page=1" class="page-link">&laquo; First</a>
+            <a href="?page={{ items.previous_page_number }}" class="page-link">Previous</a>
+        {% endif %} -->
+        
+        {% for num in items.paginator.page_range %}
+            {% if items.number == num %}
+                <span class="current">{{ num }}</span>
+            {% else %}
+                <span><a href="?page={{ num }}" class="page-link">{{ num }}</a></span>
+            {% endif %}
+        {% endfor %}
+        <br><br>
+        {% if items.has_previous %}
+        <!-- <a href="?page=1" class="page-link">&laquo; First</a> -->
+        <a href="?page={{ items.previous_page_number }}" class="page-link prev-link">&laquo;  Prev</a>
+        {% endif %}
+
+        {% if items.has_next %}
+            <a href="?page={{ items.next_page_number }}" class="page-link next-link">Next  &raquo;</a>
+            <!-- <a href="?page={{ items.paginator.num_pages }}" class="page-link">Last &raquo;</a> -->
+        {% endif %}
     </div>
+    
+    
     <div class="categories">
         <div class="small-container">
             <h2 class="title">Categories</h2>

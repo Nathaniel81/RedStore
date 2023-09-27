@@ -406,9 +406,32 @@ select option:checked {
 	line-height: 40px;
 	cursor: pointer;
 }
+.page-btn span a:hover {
+	background: #ff523b;
+	color: #fff;
+}
 .page-btn span:hover {
 	background: #ff523b;
 	color: #fff;
+}
+.current {
+	background: #ff523b;
+	color: #fff;
+}
+
+.page-btn a.prev-link,
+.page-btn a.next-link {
+    margin-left: 10px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+}
+
+.page-btn a.prev-link:hover,
+.page-btn a.next-link:hover {
+    color: #ff523b;
 }
 
 #categoryBox {
