@@ -143,12 +143,15 @@ def edit(request, pk):
 @login_required
 def delete(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
-    item.delete()
-    return redirect('/')
+    if request.method == 'POST':
+        item.delete()
+        return redirect('home')
+    
+    return render(request, 'core/confirmation.html', {'item': item})
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('/')
+        return redirect('home')
 
     if request.method == 'POST':
         username = request.POST.get('username')

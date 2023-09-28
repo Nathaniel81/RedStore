@@ -12,9 +12,6 @@
 	<title>{% block title %}{% endblock %} | Puddle</title>
 </head>
 <body>
-	{% if request.user.is_authenticated %}
-	<h3>Logged in {{ request.user }}</h3>
-	{% endif%}
 	<div class="header">
 		<div class="container">
 			<div class="navbar">
@@ -29,6 +26,7 @@
 						<li><a href="{% url 'products' %}">Items</a></li>
 						{% if request.user.is_authenticated %}
 						<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+						<li><a href="{% url 'inbox' %}">Inbox</a></li>
 						<li class="hidden-nav">
 							<a href="{% url 'profile' request.user.id %}">
 								Profile

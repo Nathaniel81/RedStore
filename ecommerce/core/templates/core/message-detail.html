@@ -3,24 +3,25 @@
 {% block title %}Conversation{% endblock %}
 
 {% block content %}
-
-<div class="all-msgs">
-    {% for message in conversation.messages.all %}
-        <div class="{% if message.created_by == request.user %}bg-user{% else %}bg-other{% endif %}" id="msg">
-            <div>
-                <p><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
-                <p>{{ message.content }}</p>
+<!-- <div class="form-container"> -->
+    <div class="all-msgs">
+        {% for message in conversation.messages.all %}
+            <div class="{% if message.created_by == request.user %}bg-user{% else %}bg-other{% endif %}" id="msg">
+                <div>
+                    <p><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
+                    <p>{{ message.content }}</p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
-</div>
-<div class="msg-ctnr">
-	<form method="post" action=".">
-	    {% csrf_token %}
+        {% endfor %}
+    </div>
+    <div class="msg-ctnr">
+    	<form method="post" action=".">
+    	    {% csrf_token %}
 
-	    {{ form.as_p }}
+    	    {{ form.as_p }}
 
-	    <button class="conv-btn">Send</button>
-	</form>
-</div>
+    	    <button class="conv-btn">Send</button>
+    	</form>
+    </div>
+<!-- </div> -->
 {% endblock %}
