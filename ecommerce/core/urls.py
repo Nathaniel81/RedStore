@@ -17,7 +17,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('profile/<str:pk>', views.userProfile, name='profile'),
     path('rate_and_comment/<str:pk>', views.rate_and_comment, name='rate-comment'),
-    path('edit-profile/', views.updateUser, name='update-user'),
+    path('edit-profile/', views.updateUser, name='edit-profile'),
     # path('login/', auth_view.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'),

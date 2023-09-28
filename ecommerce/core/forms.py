@@ -50,6 +50,11 @@ class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ('category', 'name', 'description', 'price', 'image1', 'image2', 'image3', 'image4',)
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['description'].widget.attrs['class'] = 'description-width'
+
 
 class EditItemForm(forms.ModelForm):
     class Meta:

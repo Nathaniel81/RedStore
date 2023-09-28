@@ -19,7 +19,6 @@ def landing(request):
 	}
     return render(request, 'core/landing.html', context)
 
-
 def index(request):
     items = Item.objects.filter(is_sold=False)
     categories = Category.objects.all()
