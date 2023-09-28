@@ -44,11 +44,13 @@ class SignUpForm(UserCreationForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('avatar', 'name', 'username', 'email', 'bio', 'instagram', 'facebook', 'twitter',)
-        
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.fields['bio'].widget.attrs['class'] = 'bio-width'
+        fields = ('avatar', 'name', 'username', 'email', 'bio', 'instagram', 'facebook', 'whatsup', 'twitter',)
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        self.fields['bio'].widget.attrs.update({'class': 'form-control bio-input'})
+        # Remove help text for the username field
+        self.fields['username'].help_text = None
 
 class NewItemForm(forms.ModelForm):
     class Meta:
