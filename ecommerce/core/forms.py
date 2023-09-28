@@ -45,6 +45,10 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('avatar', 'name', 'username', 'email', 'bio', 'instagram', 'facebook', 'twitter',)
+        
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['bio'].widget.attrs['class'] = 'bio-width'
 
 class NewItemForm(forms.ModelForm):
     class Meta:
@@ -56,10 +60,19 @@ class NewItemForm(forms.ModelForm):
         self.fields['description'].widget.attrs['class'] = 'description-width'
 
 
+
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('name', 'description', 'price', 'image1','image2', 'image3', 'image4','is_sold',)
+        fields = ('name', 'description', 'price', 'image1', 'image2', 'image3', 'image4', 'is_sold',)
+
+    def __init__(self, *args, **kwargs):
+        super(EditItemForm, self).__init__(*args, **kwargs)
+        self.fields['description'].widget.attrs.update({'class': 'form-control'})
+
+        # Suppress the clear label for image fields
+        for field_name in ('image1', 'image2', 'image3', 'image4'):
+            self.fields[field_name].widget.clear_checkbox_label = ''
         
 class ConversationMessageForm(forms.ModelForm):
     class Meta:

@@ -2,21 +2,22 @@
 {% block title %}Update Profile {% endblock %}
 
 {% block content %}
-<form class="form" action="." method="POST" enctype="multipart/form-data">
-	{% csrf_token %}
+<div class="user-form-ctnr">
+	<form class="form" action="." method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+	
+		<div class="user-form-input">
+		  <!-- <label for="profile_pic">{{field.label}}</label> -->
+		  {{ form.as_p }}
+		</div>
+	
 
-	{% for field in form %}
-	<div class="form__group">
-	  <label for="profile_pic">{{field.label}}</label>
-	  {{field}}
-	</div>
-	{% endfor %}
+		<div class="form__action">
+		  <a class="btn" href="/">Cancel</a>
+		  <button class="btn" type="submit">Update</button>
+		</div>
+	</form>
+</div>
 
-
-	<div class="form__action">
-	  <a class="btn" href="/">Cancel</a>
-	  <button class="btn" type="submit">Update</button>
-	</div>
-</form>
 
 {% endblock %}

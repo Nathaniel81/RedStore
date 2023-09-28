@@ -3,27 +3,41 @@
 
 {% block content %}
 
-    <!-- <h1 class="form-title">Title</h1> -->
-	<div class="item-form-ctnr">
-		<form method="post" action="{% if pk %}{% url 'edit' pk=pk %}{% else %}{% url 'new' %}{% endif %}" enctype="multipart/form-data" class="item-form">
-			{% csrf_token %}
-	
-			<div class="item-form-inputs">
-				{{ form.as_p }}
-			</div>
-	
-			{% if form.errors or form.non_field_errors %}
-				<div class="errors">
-					{% for field in form %}
-						{{ field.errors }}
-					{% endfor %}
-	
-					{{ form.non_field_errors }}
-				</div>
-			{% endif %}
-	
-			<button class="item-form-btn">Submit</button>
-		</form>
-	</div>
+<div class="item-form-ctnr">
+    <form method="post" action="{% if pk %}{% url 'edit' pk=pk %}{% else %}{% url 'new' %}{% endif %}" enctype="multipart/form-data" class="item-form">
+        {% csrf_token %}
+
+        <div class="item-form-inputs">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            {{ form.description.label_tag }}
+            {{ form.description }}
+            {{ form.price.label_tag }}
+            {{ form.price }}
+            {{ form.image1.label_tag }}
+            {{ form.image1 }}
+            {{ form.image2.label_tag }}
+            {{ form.image2 }}
+            {{ form.image3.label_tag }}
+            {{ form.image3 }}
+            {{ form.image4.label_tag }}
+            {{ form.image4 }}
+            {{ form.is_sold.label_tag }}
+            {{ form.is_sold }}
+        </div>
+
+        {% if form.errors or form.non_field_errors %}
+            <div class="errors">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <button class="item-form-btn">Submit</button>
+    </form>
+</div>
+
 	
 {% endblock %}

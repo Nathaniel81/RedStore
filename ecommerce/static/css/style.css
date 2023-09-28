@@ -612,21 +612,37 @@ form a{
 	transition: transform 1s;
 }
 
+
 .item-form-ctnr {
 	width: 70%;
 	margin: auto;
 	box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
 }
-
-
 .item-form {
 	margin-top: 1.5rem;
 	padding: 30px;
-	
 }
 
 .item-form-inputs > * + * {
 	margin-top: 1rem;
+}
+
+.item-form-inputs {
+	position: relative;
+}
+/* .is-sold-wrapper {
+ position: absolute;
+ left: 70px;
+ bottom: -15px;
+ width: 30px;
+} */
+
+.item-form-inputs input[type="checkbox"] {
+	position: absolute;
+ 	left: 70px;
+ 	bottom: -15px;
+ 	width: 30px;
+	cursor: pointer;
 }
 
 .errors  {
@@ -635,7 +651,6 @@ form a{
 	background-color: #FEE2E2;
 	border-radius: 1rem;
 }
-
 .item-form-btn {
 	margin-top: 1.5rem;
 	padding-top: 1rem;
@@ -647,19 +662,53 @@ form a{
 	color: #FFFFFF;
 	border-radius: 1rem;
 	border: none;
-	cursor: pointer;
-	
+	cursor: pointer;	
 }
-
 .item-form-btn:hover {
 	background-color: #e33b29;
 }
-
-.description-width {
+.description-width, .bio-width {
     width: 100%;
     border: 1px solid #ccc;
 }
+.description-width {
+    /* Add any specific styles you want for the description field here */
+    outline: none; /* Remove the focus outline if desired */
+}
 
+/* Adjust the layout for the "Is Sold" checkbox */
+
+
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.form-control:focus {
+    outline: none;
+    /* Add any other styles you want for the focused input here */
+}
+
+
+
+.user-form-ctnr {
+	width: 70%;
+	margin: auto;
+	box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+	/* outline: auto; */
+	padding: 30px;
+}
+.user-form {
+	margin-top: 1.5rem;
+	padding: 30px;
+}
+
+.user-form-inputs > * + * {
+	margin-top: 1rem;
+}
 
 .convo-ctnr {
     display: flex;
@@ -744,7 +793,9 @@ conv-btn:focus {
 }
 
 .profile {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
+	width: 80%;
+	margin: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -906,7 +957,9 @@ conv-btn:focus {
 .svg-icon2 {
     position: absolute;
     top: 160px;
-    right: 150px;
+    /* right: 100px; */
+	right: 190px;
+
 	cursor: pointer;
 }
 
