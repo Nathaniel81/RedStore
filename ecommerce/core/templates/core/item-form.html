@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% block title %}{{ title }} {% endblock %}
+{% block title %}New Item {% endblock %}
 
 {% block content %}
 
@@ -8,6 +8,8 @@
         {% csrf_token %}
 
         <div class="item-form-inputs">
+            {{ form.category.label_tag }}
+            {{ form.category }}<br>
             {{ form.name.label_tag }}
             {{ form.name }}
             {{ form.description.label_tag }}

@@ -45,7 +45,7 @@ def products(request):
     if query:
         items = Item.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
     
-    items_per_page = 1
+    items_per_page = 10
     page_number = request.GET.get('page', 1)
     p = Paginator(items, items_per_page)
     
