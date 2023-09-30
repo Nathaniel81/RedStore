@@ -5,6 +5,7 @@
 }
 body {
 	font-family: 'Poppins', sans-serif;
+	overflow-x: hidden;
 	/* background: radial-gradient(#fff, #ffd6d6); */
 	/* background: radial-gradient(#f0f0f0, #d0d0d0); */
 
@@ -28,24 +29,23 @@ nav ul li {
 	margin-right: 20px;
 }
 nav ul li a {
-    text-decoration: none; /* Remove default text underline */
-    color: #333; /* Set default text color */
-    transition: color 0.3s; /* Smooth color transition on hover */
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
 }
 nav ul li a:hover {
-    color: #ff523b; /* Change text color on hover */
+    color: #ff523b;
 }
 
-/* Add the underline effect on hover */
 nav ul li a:hover::before {
     content: "";
     position: absolute;
     bottom: -3px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%; /* Adjust the width of the underline */
-    height: 2px; /* Adjust the thickness of the underline */
-    background-color: #ff523b; /* Set the underline color */
+    width: 50%;
+    height: 2px;
+    background-color: #ff523b;
 }
 
 nav ul li a {
@@ -75,6 +75,19 @@ p {
 	/* outline: auto; */
 	padding: 0;
 }
+.categories {
+	margin: 70px 0;
+}
+
+.categories .col-3 {
+	text-align: center;
+	padding: 40px 20px;
+	box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+.categories .col-3:hover {
+	transform: translateY(-10px);
+}
 .col-2 {
 	flex-basis: 50%;
 	min-width: 300px;
@@ -97,8 +110,8 @@ p {
 	height: 500px;
 }
 .space {
-    height: 30px; /* Adjust the height as needed for the desired space */
-    background-color: transparent; /* Optional: Set a background color for the space */
+    height: 30px;
+    background-color: transparent;
 }
 .col-2 h1 {
 	font-size: 50px;
@@ -279,6 +292,12 @@ small {
 ul {
 	list-style-type: none;
 }
+.footer-col-3 a , .footer-col-4 a{
+	color: #8a8a8a;
+}
+.footer-col-3 a:hover, .footer-col-4 a:hover {
+	color: #fff;
+}
 .app-logo {
 	margin-top: 20px;
 }
@@ -291,6 +310,7 @@ ul {
 	height: 1px;
 	margin: 20px 0;
 }
+
 .copyright {
 	text-align: center;
 }
@@ -303,10 +323,10 @@ ul {
 	justify-content: space-between;
 	margin: 100px auto 50px;
 }
-/* CSS to vertically align the icon with the text */
+
 .copyright span {
 	vertical-align: middle;
-	margin-right: 3px; /* Optional: Add some space between the icon and text */
+	margin-right: 3px;
   }
   
   @media only screen and (max-width: 800px) {

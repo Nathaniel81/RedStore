@@ -336,3 +336,6 @@ def messageDetail(request, pk):
         'conversation': conversation,
         'form': form
     })
+
+def about(request):
+    return render(request, 'core/about.html')
