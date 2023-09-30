@@ -953,6 +953,9 @@ conv-btn:focus {
     padding: 5px;
     border: 1px solid #b2bdbd;
 }
+.rating-form textarea:focus {
+	outline: none;
+}
 .rating-form button[type="submit"] {
 	background: #ff523b;
 	width: 43%;
@@ -968,6 +971,13 @@ conv-btn:focus {
 
 .rating-form button:hover {
     background-color: #563434;;
+}
+.svg-icon2:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+.insta-icon:hover {
+	fill: #bc2a8d;
 }
 .star-icon {
     font-size: 20px;

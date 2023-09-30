@@ -1,17 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 
+
+
+class EthiopianPhoneNumberField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 13
+        kwargs['validators'] = [
+            RegexValidator(
+                regex=r'^\+251[79]\d{8}$',
+                message="Phone number must start with '+251', followed by either '9' or '7', and then 8 additional digits."
+            ),
+        ]
+        super().__init__(*args, **kwargs)
 
 class User(AbstractUser):
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     bio = models.TextField(null=True)
     avatar = models.ImageField(null=True, default="avatar.svg")
+    # phone_number = EthiopianPhoneNumberField()
     
     instagram = models.CharField(max_length=50, blank=True)
     facebook = models.CharField(max_length=50, blank=True)
     whatsup = models.CharField(max_length=50, blank=True)
     twitter = models.CharField(max_length=50, blank=True)
+    
     # sold_items_count = models.PositiveIntegerField(default=0)
 
     total_ratings = models.PositiveIntegerField(default=0)
@@ -62,6 +77,9 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     price = models.FloatField()
+    #digital = models.BooleanField(default=False)
+    featured = models.BooleanField(default=False)
+    exclusive = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='items', on_delete=models.CASCADE)
@@ -102,8 +120,6 @@ class Item(models.Model):
             url = ''
         return url
 
-
-
 class Conversation(models.Model):
     item = models.ForeignKey(Item, related_name='conversations', on_delete=models.CASCADE)
     members = models.ManyToManyField(User, related_name='conversations')
@@ -118,10 +134,18 @@ class ConversationMessage(models.Model):
     content = models.TextField()
     created_at =  models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='created_messages', on_delete=models.CASCADE)
-    
+
+class Testimonial(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 # class Transaction(models.Model):
 #     seller = models.ForeignKey(User, related_name='transactions_as_seller', on_delete=models.CASCADE)
 #     buyer = models.ForeignKey(User, related_name='transactions_as_buyer', on_delete=models.CASCADE)
 #     item = models.ForeignKey(Item, related_name='transactions', on_delete=models.CASCADE)
 #     completed = models.BooleanField(default=False)
 #     transaction_date = models.DateTimeField(auto_now_add=True)
+
+    
