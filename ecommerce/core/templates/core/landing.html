@@ -8,6 +8,9 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
 		<!-- <link rel="stylesheet" href="style1.css"> -->
 		<link rel="stylesheet" href="{% static 'css/landing.css' %}">
 		<title>Welcome | RedStore</title>
@@ -58,10 +61,10 @@
 				<!-- <img src="Imgs-OMP/Profiling-pana.png" > -->
 				<img src="{% static 'images/Profiling-pana.png' %}" id="pp">
 			</div>
-			<div class="col-2">
-				<h1>Discover<br> Personalized User Profiles<br></h1>
-				<p>Our platform fosters seller-buyer relationships by featuring user profiles, making it easier for users to connect with each other, share their listings, and engage in seamless transactions.</p>
-			</div>
+				<div data-aos="fade-up" class="col-2">
+					<h1>Discover<br> Personalized User Profiles<br></h1>
+					<p>Our platform fosters seller-buyer relationships by featuring user profiles, making it easier for users to connect with each other, share their listings, and engage in seamless transactions.</p>
+				</div>
 		</div>
 	</div>
 	
@@ -69,7 +72,7 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-2">
+			<div class="col-2" data-aos="fade-right">
 				<h1>Direct Messaging<br></h1>
 				<p>Stay connected effortlessly with our built-in direct messaging system. Whether you have questions about a product or want to negotiate a deal, our platform makes it simple to chat with sellers or buyers in real-time. Say goodbye to the hassle of sharing personal contact information and enjoy seamless communication within the safety of our secure messaging environment. Start a conversation today and make your buying and selling experience smoother than ever.</p>
 			</div>
@@ -88,7 +91,7 @@
 				<img src="{% static 'images/Online Review-pana.png' %}">
 				
 			</div>
-			<div class="col-2">
+			<div class="col-2" data-aos="fade-left">
 				<h1>Rate & Review</h1>
 				<p>Enhance user trust and transparency with our rating and review system.<br>After every successful purchase, buyers can rate sellers on a scale of 1 to 5 stars and provide valuable feedback based on their experience. This feature empowers users to make informed decisions, ensuring a reliable and secure marketplace. Leave your comments and help build a thriving community of buyers and sellers.</p>
 			</div>
@@ -97,7 +100,7 @@
 	<div class="space"></div>
 	<div class="small-container">
 		<h2 class="title">Featured Products</h2>
-		<div class="row">
+		<div class="row" data-aos="zoom-in">
 			<div class="col-4">
 				<img src= "{% static 'images/product-1.jpg' %}" alt="">
 				<h4>Red Printed Tshirt</h4>
@@ -152,7 +155,7 @@
 			</div>
 		</div>
 		<h2 class="title">Latest Products</h2>
-		<div class="row">
+		<div class="row" data-aos="zoom-in">
 			{% for item in items %}
 			<div class="col-4">
 				<a href="{% url 'detail' item.id %}">
@@ -172,16 +175,16 @@
 		<h2 class="title">Categories</h2>
 		<div class="row">
 			{% for category in categories %}
-			<div class="col-3">
-				<a href="{% url 'products' %}?query={{ query }}&category={{ category.id }}"
-				data-category="{{ category.name }}" class="category-link">
-						<img src="{% static 'images/category-1.jpg' %}">
-						{{ category.name }}
-						<!-- <p>{{ category.items.count }} {{ category.items.count|pluralize:"Item,Items" }}</p> -->
-				</a>
-			</div>
+			<a href="{% url 'products' %}?query={{ query }}&category={{ category.id }}"
+			data-category="{{ category.name }}" class="category-link">
+				<div id="categoryBox" class="col-3">
+					{{ category.name }}
+					<p>{{ category.items.count }} {{ category.items.count|pluralize:"Item,Items" }}</p>
+				</div>
+			</a>
 			{% endfor %}
 		</div>
+	</div>
 </div>
 
 <div class="offer">
@@ -191,11 +194,12 @@
 				<img src="{% static 'images/exclusive.png' %}" alt="" class="offer-img">
 			</div>
 			<div class="col-2">
-				<p>Exclusively Available on RedStore</p>
-				<h1>Smart Band 4</h1>
-				<small>The Mi Smart Band 4 feature a 39.9% larger (than Mi Band 3) AMOLED color full-touch display with adjustable brightness, so everything is clear as can be.</small>
-				<a href="" class="btn">Buy Now &#8594;</a>
+				<p data-aos="fade-up">Exclusively Available on RedStore</p>
+				<h1 data-aos="fade-up" data-aos-delay="100">Smart Band 4</h1>
+				<small data-aos="fade-up" data-aos-delay="200">The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) AMOLED color full-touch display with adjustable brightness, so everything is clear as can be.</small>
+				<a href="" class="btn" data-aos="fade-up" data-aos-delay="300">Buy Now &#8594;</a>
 			</div>
+			
 		</div>
 	</div>
 </div>
@@ -321,7 +325,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="footer-col-1">
-					<h3>Download Our App</h3>
+					<h3>Download My App</h3>
 					<p>Download App for Android or ios mobile phone.</p>
 					<div class="app-logo">
 						<!-- <img src="images/play-store.png" alt=""> -->
@@ -345,7 +349,7 @@
 					</ul>
 				</div>
 				<div class="footer-col-4">
-					<h3>Follow Us</h3>
+					<h3>Follow Me</h3>
 					<ul>
 						<li>FaceBook</li>
 						<li>Instagram</li>
@@ -378,7 +382,16 @@
 				MenuItems.style.maxHeight = "0px";
 			}
 		}
+		
 	</script>
-
+	<script>
+		AOS.init({
+    duration: 800, // Animation duration in milliseconds
+    // offset: 200,   // Offset (in px) from the top of the viewport
+    // easing: 'ease-in-out', // Easing options: linear, ease, ease-in, ease-out, ease-in-out
+    // once: true,     // Only animate elements once
+  });
+	</script>
+	  
 </body>
 </html>

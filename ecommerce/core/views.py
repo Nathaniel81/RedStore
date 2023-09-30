@@ -10,7 +10,7 @@ from .forms import NewItemForm, EditItemForm, SignUpForm, ConversationMessageFor
 
 
 def landing(request):
-    items = Item.objects.filter(is_sold=False)
+    items = Item.objects.filter(is_sold=False).order_by('-created_at')[0:6]
     categories = Category.objects.all()
 
     context = {
@@ -35,7 +35,7 @@ def contact(request):
 
 def products(request):
     query = request.GET.get('query', '')
-    items = Item.objects.filter(is_sold=False)
+    items = Item.objects.filter(is_sold=False).order_by('-created_at')
     categories = Category.objects.all()
     selected_category_name = 'All Items'
     category_id = request.GET.get('category', 0)
@@ -78,7 +78,7 @@ def detail(request, pk):
 
 @login_required
 def dashboard(request):
-    items = Item.objects.filter(created_by=request.user)
+    items = Item.objects.filter(created_by=request.user).order_by('-created_at')
     query = request.GET.get('query', '')
     selected_category_name = 'My Items'
     
