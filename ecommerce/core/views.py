@@ -339,5 +339,11 @@ def messageDetail(request, pk):
         'form': form
     })
 
+def deleteComment(request, pk):
+    comment = get_object_or_404(Comments, pk=pk)
+    comment.delete()
+    return redirect('profile', comment.seller.id)
+    
+    
 def about(request):
     return render(request, 'core/about.html')

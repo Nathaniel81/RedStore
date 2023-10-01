@@ -26,5 +26,6 @@ urlpatterns = [
     path('inbox/', views.inbox, name='inbox'),
     path('messages/<str:pk>/', views.messageDetail, name='convo-detail'),
     path('new-convo/<int:item_pk>/', views.new_conversation, name='new-convo'),
-    path('about/', views.about, name='about')
+    path('about/', views.about, name='about'),
+    path('delete-comment/<str:pk>', views.deleteComment, name='delete-comment')
 ]
