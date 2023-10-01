@@ -69,10 +69,12 @@ def products(request):
 def detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
+    items = Item.objects.filter(category=item.category, is_sold=False)[4:]
 
     context = {
 		'item':item,
-		'related_items':related_items
+		'related_items':related_items,
+        'items':items
 	}
     return render(request, 'core/detail.html', context)
 

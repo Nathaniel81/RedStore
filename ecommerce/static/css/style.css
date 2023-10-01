@@ -26,24 +26,23 @@ nav ul li {
 	margin-right: 20px;
 }
 nav ul li a {
-    text-decoration: none; /* Remove default text underline */
-    color: #333; /* Set default text color */
-    transition: color 0.3s; /* Smooth color transition on hover */
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
 }
 nav ul li a:hover {
-    color: #ff523b; /* Change text color on hover */
+    color: #ff523b;
 }
 
-/* Add the underline effect on hover */
 nav ul li a:hover::before {
     content: "";
     position: absolute;
     bottom: -3px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%; /* Adjust the width of the underline */
-    height: 2px; /* Adjust the thickness of the underline */
-    background-color: #ff523b; /* Set the underline color */
+    width: 50%;
+    height: 2px;
+    background-color: #ff523b;
 }
 
 nav ul li a {
@@ -126,6 +125,7 @@ p {
 	align-items: center;
 	justify-content: space-around;
 }
+
 .col-2 {
 	flex-basis: 50%;
 	min-width: 300px;
@@ -141,8 +141,27 @@ p {
 }
 .col-2 img.larger-image {
     max-width: 100%;
-    height: auto; /* Added to maintain aspect ratio */
+    height: auto;
 }
+#product-img {
+	width: 400px;
+    height: 400px;
+	object-fit: contain;
+}
+
+#view-more {
+    cursor: pointer;
+    color: #ff523b;
+
+}
+#view-more:hover {
+	color: #e33b29;
+	transition: color 0.3s;
+}
+#sp3 {
+	display: none;
+}
+
 .btn {
 	display: inline-block;
 	background: #ff523b;
@@ -177,6 +196,10 @@ p {
 	margin: auto;
 	padding: 25px 0;
 }
+#sp {
+	margin-top: 0;
+	padding-top: 0px;
+}
 .col-3 {
 	min-width: 250px;
 	margin-bottom: 30px;
@@ -197,6 +220,7 @@ p {
 }
 .col-4 img {
 	width: 100%;
+	cursor: pointer;
 }
 .image-container {
     /* width: 200px; */
@@ -977,7 +1001,8 @@ conv-btn:focus {
     transition: transform 0.3s ease-in-out;
 }
 .insta-icon:hover {
-	fill: #bc2a8d;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
 }
 .star-icon {
     font-size: 20px;

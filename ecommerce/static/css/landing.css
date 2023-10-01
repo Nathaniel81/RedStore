@@ -91,12 +91,14 @@ p {
 .col-2 {
 	flex-basis: 50%;
 	min-width: 300px;
-	/* outline: auto; */
 	padding: 0px 0px;
+	height: 400px;
 }
 .col-2 img {
 	max-width: 100%;
 	padding: 0px 0px;
+	height: 100%;
+    object-fit: cover;
 	/* height: 700px; */
 }
 #cp {

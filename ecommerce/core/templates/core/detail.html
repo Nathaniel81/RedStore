@@ -2,10 +2,10 @@
 {% block title %}Item detail {% endblock %}
 
 {% block content %}
-<div class="small-container single-product">
+<div class="small-container single-product" id="sp">
 	<div class="row">
 		<div class="col-2">
-			<img src="{{ item.imageURL1 }}" alt="" width="100%" id="product-img">
+			<img src="{{ item.imageURL1 }}" alt="" id="product-img">
 			<div class="space"></div>
 			<div class="small-img-row">
 				<div class="small-img-col">
@@ -23,21 +23,11 @@
 			</div>
 		</div>
 		<div class="col-2">
-			<p>Home / {{ item.name }}</p>
+			<p>Home /{{ item.category.name }}/{{ item.name }}</p>
 			<h1>{{ item.name }}</h1>
 			<h4>Price: <span style="font-weight: lighter;">${{ item.price }}</span></h4>
 			<h4>Seller: <a href="{% url 'profile' item.created_by.id %}" id="SellerLink">{{ item.created_by }}</a></h4>
-			
-			
-			<!-- <select>
-				<option>Select Size</option>
-				<option>XXL</option>
-				<option>XL</option>
-				<option>Large</option>
-				<option>Medium</option>
-				<option>Small</option>
-			</select> -->
-			<!-- <input type="number" value="1"> -->
+
 			{% if request.user == item.created_by %}
 				<h3>This is your item!</h3>
 				<a href="{% url 'edit' item.id %}" class="btn" style="background: #38a169; transition: background 0.3s;" onmouseover="this.style.background='#563434';" onmouseout="this.style.background='#38a169';">
@@ -48,7 +38,6 @@
 				<a href="{% url 'new-convo' item.id %}" class="btn">Contact Seller</a>
 
 			{% endif %}
-				<!-- <h3>Product Details<i class="fa fa-indent"></i></h3> -->
 			<br>
 			{% if item.description %}
 				<h4>Description:</h4>
@@ -61,30 +50,27 @@
 <div class="small-container">
 	<div class="row row-2">
 		<h2>Related Products</h2>
-		<p>View More</p>
+			<p id="view-more">View More</p>
 	</div>
 </div>
 
 <div class="small-container">
-
 		<div class="row">
-		{% for item in related_items %}
+			{% for item in related_items %}
 			<div class="col-4">
-				<img src="{{ item.imageURL1 }}" alt="">
-				<h4>{{ item.name }}</h4>
-				<!-- <div class="rating">
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star-o"></i>
-				</div> -->
-				<p>${{ item.price }}</p>
+					<a href="{% url 'detail' item.id %}">
+						<img src="{{ item.imageURL1 }}" alt="">
+						<h4>{{ item.name }}</h4>
+						<p>${{ item.price }}</p>
+					</a>
 			</div>
-		{% endfor %}
+			{% endfor %}
 		</div>
 </div>
+<div class="small-container" id="new-row">
+	
+</div>
+
 
 <script>
 	var productImg = document.getElementById("product-img");
@@ -95,6 +81,44 @@
 			productImg.src = smallImg[i].src;
 		}
 	}
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const viewMoreParagraph = document.getElementById("view-more");
+        const relatedItems = document.querySelector("#new-row");
+	
+        viewMoreParagraph.addEventListener("click", function () {
+			if (viewMoreParagraph.textContent === "View More") {
+				viewMoreParagraph.textContent = "View Less";
+				relatedItems.innerHTML = 
+					`<div class="row">
+						{% for item in items %}
+        					<div class="col-4">
+        					    <a href="{% url 'detail' item.id %}">
+        					        <div class="image-container">
+        					            <img src="{{ item.imageURL1 }}" alt="">
+        					        </div>
+        					        <h4>{{ item.name }}</h4>
+        					        <p>
+										<span id='sp3'>
+										"
+										</span>
+										$
+										<span id='sp3'>
+										"
+										</span>
+										{{ item.price }}
+									</p>
+        					    </a>
+        					</div>
+        				{% endfor %}
+					</div>`;
+			} else {
+				viewMoreParagraph.textContent = "View More";
+				relatedItems.innerHTML = ``;
+			}
+        });
+    });
 </script>
 
 {% endblock %}
