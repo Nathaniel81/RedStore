@@ -21,7 +21,7 @@
 					<form id="LoginForm" method="post" action=".">
 						{% csrf_token %}
 						<input id="username" name="username" type="text" placeholder="Username"/>
-						<input id="password" name="password" type="password">
+						<input id="password" name="password" type="password" placeholder="Password">
 						<button type="submit" class="btn">Login</button>
 						<a href="">Reset password</a><br>
 						<a href="{% url 'signup' %}" style="color: #ff523b;">Sign Up Now</a>
