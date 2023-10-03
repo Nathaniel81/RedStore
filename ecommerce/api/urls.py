@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
  	path('detail/<str:pk>/', views.itemDetail, name='detail'),
 	path('update/<str:pk>/', views.itemUpdate, name='update'),
  	path('delete/<str:pk>/', views.itemDelete, name='delete'),
+	path('api-auth/', include('rest_framework.urls')),
 ]

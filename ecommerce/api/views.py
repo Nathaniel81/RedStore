@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .serializers import ItemSerializer
-from rest_framework import status
+from rest_framework import status, permissions
 
 from core.models import Item
 
@@ -31,6 +31,7 @@ def itemDetail(request, pk):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
 def itemCreate(request):
     serializer = ItemSerializer(data=request.data)
     if serializer.is_valid():
@@ -41,6 +42,7 @@ def itemCreate(request):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
 def itemUpdate(request, pk):
     item = Item.objects.get(pk=pk)
     serializer = ItemSerializer(instance=item, data=request.data)
@@ -49,6 +51,7 @@ def itemUpdate(request, pk):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
+@permission_classes([permissions.IsAuthenticated])
 def itemDelete(request, pk):
     try:
         item = Item.objects.get(pk=pk)
