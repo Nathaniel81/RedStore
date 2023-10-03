@@ -809,6 +809,7 @@ form a{
 
 .bg-user {
     background-color: #93c5fd;
+	margin-bottom: 5px;
   }
 
 .bg-other {
@@ -830,7 +831,8 @@ form a{
 	width: 15%;
 	border: none;
 	cursor: pointer;
-	margin: 10px 0;
+	margin-left: 10px;
+	margin-bottom: 10px;
 	margin-top: 1.5rem;
 	padding-top: 1rem;
 	padding-bottom: 1rem;

@@ -6,7 +6,7 @@
 
 <div class="convo-ctnr">
     {% for conversation in conversations %}
-        <a href="{% url 'convo-detail' conversation.id %}">
+        <a href="{% url 'core:convo-detail' conversation.id %}">
             <div class="convo-row">
                 <div class="convo-img">
                     <img src="{{ conversation.item.imageURL1 }}">

@@ -17,24 +17,24 @@
 		<div class="container">
 			<div class="navbar">
 				<div class="logo">
-					<a href="{% url 'home' %}">
+					<a href="{% url 'core:home' %}">
 						<img src="{% static 'images/logo.png' %}" alt="" width="125px">
 					</a>
 				</div>
 				<nav>
 					<ul id="MenuItems">
-  						<li><a href="{% url 'home' %}">Home</a></li>
-						<li><a href="{% url 'products' %}">Items</a></li>
+  						<li><a href="{% url 'core:home' %}">Home</a></li>
+						<li><a href="{% url 'core:products' %}">Items</a></li>
 						{% if request.user.is_authenticated %}
-						<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-						<li><a href="{% url 'inbox' %}">Inbox</a></li>
+						<li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+						<li><a href="{% url 'core:inbox' %}">Inbox</a></li>
 						<li class="hidden-nav">
-							<a href="{% url 'profile' request.user.id %}">
+							<a href="{% url 'core:profile' request.user.id %}">
 								Profile
 							</a>
 						</li>
 						<li class="hidden-nav">
-							<a href="{% url 'logout' %}">
+							<a href="{% url 'core:logout' %}">
 								Logout
 							</a>
 						</li>
@@ -43,13 +43,13 @@
 								<img src="{{ request.user.avatar.url }}" alt="{% static 'images/avatar.svg' %}">
 							</div>
 							<div class="dropdown-content">
-								<a href="{% url 'profile' request.user.id %}">Profile</a>
-								<a href="{% url 'logout' %}">Logout</a>
+								<a href="{% url 'core:profile' request.user.id %}">Profile</a>
+								<a href="{% url 'core:logout' %}">Logout</a>
 							</div>
 						</li>
 						{% else %}
-						<li><a href="{% url 'signup' %}">Join</a></li>
-						<li><a href="{% url 'login' %}">Login</a></li>
+						<li><a href="{% url 'core:signup' %}">Join</a></li>
+						<li><a href="{% url 'core:login' %}">Login</a></li>
 						{% endif%}
 						
 					</ul>
@@ -81,7 +81,7 @@
 				<div class="footer-col-3">
 					<h3>Useful links</h3>
 					<ul>
-						<a href="{% url 'about' %}"><li>About Me</li></a>
+						<a href="{% url 'core:about' %}"><li>About Me</li></a>
 						<a href=""><li>Blog Posts</li></a>
 						<a href=""><li>Join Affiliate</li></a>
 					</ul>

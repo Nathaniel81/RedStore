@@ -24,7 +24,7 @@
 						<input id="password" name="password" type="password" placeholder="Password">
 						<button type="submit" class="btn">Login</button>
 						<a href="">Reset password</a><br>
-						<a href="{% url 'signup' %}" style="color: #ff523b;">Sign Up Now</a>
+						<a href="{% url 'core:signup' %}" style="color: #ff523b;">Sign Up Now</a>
 						{% if form.errors or form.non_field_errors %}
 							<div class="errors">
 								{% for field in form %}

@@ -26,16 +26,16 @@
 			<p>Home /{{ item.category.name }}/{{ item.name }}</p>
 			<h1>{{ item.name }}</h1>
 			<h4>Price: <span style="font-weight: lighter;">${{ item.price }}</span></h4>
-			<h4>Seller: <a href="{% url 'profile' item.created_by.id %}" id="SellerLink">{{ item.created_by }}</a></h4>
+			<h4>Seller: <a href="{% url 'core:profile' item.created_by.id %}" id="SellerLink">{{ item.created_by }}</a></h4>
 
 			{% if request.user == item.created_by %}
 				<h3>This is your item!</h3>
-				<a href="{% url 'edit' item.id %}" class="btn" style="background: #38a169; transition: background 0.3s;" onmouseover="this.style.background='#563434';" onmouseout="this.style.background='#38a169';">
+				<a href="{% url 'core:edit' item.id %}" class="btn" style="background: #38a169; transition: background 0.3s;" onmouseover="this.style.background='#563434';" onmouseout="this.style.background='#38a169';">
 					Edit
 				</a>  
-				<a href="{% url 'delete' item.id %}" class="btn">Delete</a>
+				<a href="{% url 'core:delete' item.id %}" class="btn">Delete</a>
 			{% else %}
-				<a href="{% url 'new-convo' item.id %}" class="btn">Contact Seller</a>
+				<a href="{% url 'core:new-convo' item.id %}" class="btn">Contact Seller</a>
 
 			{% endif %}
 			<br>
@@ -58,7 +58,7 @@
 		<div class="row">
 			{% for item in related_items %}
 			<div class="col-4">
-					<a href="{% url 'detail' item.id %}">
+					<a href="{% url 'core:detail' item.id %}">
 						<img src="{{ item.imageURL1 }}" alt="">
 						<h4>{{ item.name }}</h4>
 						<p>${{ item.price }}</p>
@@ -94,7 +94,7 @@
 					`<div class="row">
 						{% for item in items %}
         					<div class="col-4">
-        					    <a href="{% url 'detail' item.id %}">
+        					    <a href="{% url 'core:detail' item.id %}">
         					        <div class="image-container">
         					            <img src="{{ item.imageURL1 }}" alt="">
         					        </div>

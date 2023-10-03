@@ -4,7 +4,7 @@
 {% block content %}
 <div class="small-container">
 	<div class="search-box">
-        <form action="{% url 'products' %}" method="get">
+        <form action="{% url 'core:products' %}" method="get">
             <input type="text" name="query" placeholder="Search for items" value="{{ query }}">
             <button type="submit" class="btn">Search</button>
         </form>
@@ -12,16 +12,16 @@
     <div class="row row-2">
         <h2 id="pTitle">{{ selected_category_name }}</h2>
         <select id="categorySelect">
-            <option value="" data-url="{% url 'products' %}">All Items</option>
+            <option value="" data-url="{% url 'core:products' %}">All Items</option>
             {% for category in categories %}
-                <option value="{{ category.id }}" data-title="{{ category.name }}" data-url="{% url 'products' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</option>
+                <option value="{{ category.id }}" data-title="{{ category.name }}" data-url="{% url 'core:products' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</option>
             {% endfor %}
         </select>
     </div>
 	<div class="row">
         {% for item in items %}
         <div class="col-4">
-            <a href="{% url 'detail' item.id %}">
+            <a href="{% url 'core:detail' item.id %}">
                 <div class="image-container">
                     <img src="{{ item.imageURL1 }}" alt="">
                 </div>
@@ -67,7 +67,7 @@
             <h2 class="title">Categories</h2>
             <div class="row">
                 {% for category in categories %}
-				<a href="{% url 'products' %}?query={{ query }}&category={{ category.id }}"
+				<a href="{% url 'core:products' %}?query={{ query }}&category={{ category.id }}"
 				data-category="{{ category.name }}" class="category-link">
                 	<div id="categoryBox" class="col-3">
                 	    {{ category.name }}

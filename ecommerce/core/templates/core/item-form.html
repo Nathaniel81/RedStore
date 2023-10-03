@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="item-form-ctnr">
-    <form method="post" action="{% if pk %}{% url 'edit' pk=pk %}{% else %}{% url 'new' %}{% endif %}" enctype="multipart/form-data" class="item-form">
+    <form method="post" action="{% if pk %}{% url 'core:edit' pk=pk %}{% else %}{% url 'core:new' %}{% endif %}" enctype="multipart/form-data" class="item-form">
         {% csrf_token %}
 
         <div class="item-form-inputs">

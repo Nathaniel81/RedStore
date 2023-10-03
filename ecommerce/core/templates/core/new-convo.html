@@ -3,11 +3,10 @@
 {% block title %}New conversation{% endblock %}
 
 {% block content %}
-<div class="form-container">
+<!-- <div class="form-container"> -->
 	<form method="post" action=".">
+	    <div class="msg-ctnr">
 	    {% csrf_token %}
-
-	    <div>
 	        {{ form.as_p }}
 	    </div>
 
@@ -21,7 +20,7 @@
 	        </div>
 	    {% endif %}
 
-	    <button class="btn">Send</button>
+	    <button class="conv-btn">Send</button>
 	</form>
-</div>
+<!-- </div> -->
 {% endblock %}

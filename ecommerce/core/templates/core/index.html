@@ -81,7 +81,7 @@
 	<div class="row">
         {% for item in items %}
         <div class="col-4">
-            <a href="{% url 'detail' item.id %}">
+            <a href="{% url 'core:detail' item.id %}">
                 <div class="image-container">
                     <img src="{{ item.imageURL1 }}" alt="">
                 </div>
@@ -97,7 +97,7 @@
 		<h2 class="title">Categories</h2>
 		<div class="row">
 			{% for category in categories %}
-			<a href="{% url 'products' %}?query={{ query }}&category={{ category.id }}"
+			<a href="{% url 'core:products' %}?query={{ query }}&category={{ category.id }}"
 			data-category="{{ category.name }}" class="category-link">
 				<div id="categoryBox" class="col-3">
 					{{ category.name }}

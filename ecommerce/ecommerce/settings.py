@@ -82,12 +82,24 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'RedStore',
+        'USER': 'Nate',  # Use 'USER', not 'User'
+        'PASSWORD': 'Nate',  # Use 'PASSWORD', not 'Password'
+        'HOST': 'localhost',  # You may need to specify the host as well
+        'PORT': '5432',  # Use the default PostgreSQL port (5432)
     }
 }
+
 
 
 # Password validation

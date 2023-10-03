@@ -94,7 +94,7 @@ def dashboard(request):
     if query:
         items = Item.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
     
-    items_per_page = 1
+    items_per_page = 12
     page_number = request.GET.get('page', 1)
     p = Paginator(items, items_per_page)
     
@@ -121,7 +121,7 @@ def new(request):
             item = form.save(commit=False)
             item.created_by = request.user
             item.save()
-            return redirect('detail', pk=item.id)
+            return redirect('core:detail', pk=item.id)
     else:
         form = NewItemForm()
     
@@ -136,7 +136,7 @@ def edit(request, pk):
         form = EditItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
             form.save()
-            return redirect('detail', pk=item.id)
+            return redirect('core:detail', pk=item.id)
     else:
         form = EditItemForm(instance=item)
     
@@ -149,13 +149,13 @@ def delete(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
     if request.method == 'POST':
         item.delete()
-        return redirect('home')
+        return redirect('core:home')
     
     return render(request, 'core/confirmation.html', {'item': item})
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('core:home')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -169,9 +169,11 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
+            print('Y')
             login(request, user)
-            return redirect('home')
+            return redirect('core:home')
         else:
+            print('X')
             messages.error(request, 'Username OR password does not exit')
 
     context = {}
@@ -216,7 +218,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('core:home')
     else:
         form = SignUpForm()
 
@@ -240,7 +242,7 @@ def updateUser(request):
         form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('profile', pk=user.id)
+            return redirect('core:profile', pk=user.id)
 
     return render(request, 'core/update-user.html', {'form': form})
 
@@ -253,7 +255,7 @@ def rate_and_comment(request, pk):
         comment_text = request.POST.get('body')
         
         if request.user == user:
-            return redirect('profile', pk=pk)
+            return redirect('core:profile', pk=pk)
         
         existing_rating = Rating.objects.filter(user=user, created_by=request.user).first()
         if existing_rating:
@@ -271,18 +273,18 @@ def rate_and_comment(request, pk):
         
         user.update_total_ratings()
   
-    return redirect('profile', pk=user.id)
+    return redirect('core:profile', pk=user.id)
 
 
 @login_required
 def new_conversation(request, item_pk):
     item = get_object_or_404(Item, pk=item_pk)
     if item.created_by == request.user:
-        return redirect('dashboard')
+        return redirect('core:dashboard')
     conversations = Conversation.objects.filter(item=item).filter(members__in=[request.user.id])
 
     if conversations:
-        return redirect('convo-detail', pk=conversations.first().id)
+        return redirect('core:convo-detail', pk=conversations.first().id)
     
     if request.method == 'POST':
         form = ConversationMessageForm(request.POST)
@@ -297,8 +299,9 @@ def new_conversation(request, item_pk):
             conversation_message.conversation = conversation
             conversation_message.created_by = request.user
             conversation_message.save()
+            conv_id = conversation_message.id
 
-            return redirect('detail', pk=item_pk)
+            return redirect('core:detail', pk=item_pk)
     else:
         form = ConversationMessageForm()
 
@@ -330,7 +333,7 @@ def messageDetail(request, pk):
 
             conversation.save()
 
-            return redirect('convo-detail', pk=pk)
+            return redirect('core:convo-detail', pk=pk)
     else:
         form = ConversationMessageForm()
 
@@ -342,7 +345,7 @@ def messageDetail(request, pk):
 def deleteComment(request, pk):
     comment = get_object_or_404(Comments, pk=pk)
     comment.delete()
-    return redirect('profile', comment.seller.id)
+    return redirect('core:profile', comment.seller.id)
     
     
 def about(request):

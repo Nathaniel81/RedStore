@@ -25,14 +25,14 @@
 					<ul id="MenuItems">
 						<!-- <li><a href="/">Home</a></li> -->
 						{% if user.is_authenticated %}
-							  <li><a href="{% url 'home' %}">Home</a></li>
+							  <li><a href="{% url 'core:home' %}">Home</a></li>
 							{% else %}
 							  <li><a href="/">Home</a></li>
 							{% endif %}				
 						<li><a href="">Features</a></li>
-						<li><a href="{% url 'products' %}">Items</a></li>
-						<li><a href="{% url 'signup' %}">Join</a></li>
-						<li><a href="{% url 'login' %}">Login</a></li>
+						<li><a href="{% url 'core:products' %}">Items</a></li>
+						<li><a href="{% url 'core:signup' %}">Join</a></li>
+						<li><a href="{% url 'core:login' %}">Login</a></li>
 					</ul>
 				</nav>
 				<!-- <img src="images/cart.png" width="30px" height="30px"> -->
@@ -157,7 +157,7 @@
 		<div class="row" data-aos="zoom-in">
 			{% for item in items %}
 			<div class="col-4">
-				<a href="{% url 'detail' item.id %}">
+				<a href="{% url 'core:detail' item.id %}">
 					<div class="image-container">
 						<img src="{{ item.imageURL1 }}" alt="">
 					</div>
@@ -174,7 +174,7 @@
 		<h2 class="title">Categories</h2>
 		<div class="row">
 			{% for category in categories %}
-			<a href="{% url 'products' %}?query={{ query }}&category={{ category.id }}"
+			<a href="{% url 'core:products' %}?query={{ query }}&category={{ category.id }}"
 			data-category="{{ category.name }}" class="category-link">
 				<div id="categoryBox" class="col-3">
 					{{ category.name }}
@@ -341,7 +341,7 @@
 				<div class="footer-col-3">
 					<h3>Useful links</h3>
 					<ul>
-						<a href="{% url 'about' %}"><li>About Me</li></a>
+						<a href="{% url 'core:about' %}"><li>About Me</li></a>
 						<a href=""><li>Blog Posts</li></a>
 						<a href=""><li>Join Affiliate</li></a>
 					</ul>
