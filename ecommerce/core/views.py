@@ -1,3 +1,17 @@
+"""
+Module: core/views.py
+
+This module contains Django views for handling various functionalities of the web application, including:
+- Displaying product listings and details
+- User dashboard management (adding, editing, deleting items)
+- User profile and authentication
+- Messaging and conversations
+- User ratings and comments
+
+Each view is documented with its purpose and functionality.
+"""
+
+
 from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -10,6 +24,10 @@ from .forms import NewItemForm, EditItemForm, SignUpForm, ConversationMessageFor
 
 
 def landing(request):
+    """
+    Render the landing page with recent items and categories.
+    """
+
     items = Item.objects.filter(is_sold=False).order_by('-created_at')[0:6]
     categories = Category.objects.all()
 
@@ -17,23 +35,29 @@ def landing(request):
 		'items':items,
 		'categories':categories
 	}
+
     return render(request, 'core/landing.html', context)
 
 def index(request):
-    items = Item.objects.filter(is_sold=False).order_by('-created_at')[0:6]
+    """
+    Render the index page with recent items and categories.
+    """
 
+    items = Item.objects.filter(is_sold=False).order_by('-created_at')[0:6]
     categories = Category.objects.all()
+
     context = {
         'items': items,
         'categories': categories
     }
+
     return render(request, 'core/index.html', context)
 
-
-def contact(request):
-    return render(request, 'core/contact.html')
-
 def products(request):
+    """
+    Display a list of products based on search query and category filter.
+    """
+
     query = request.GET.get('query', '')
     items = Item.objects.filter(is_sold=False).order_by('-created_at')
     categories = Category.objects.all()
@@ -47,7 +71,7 @@ def products(request):
     if query:
         items = Item.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
     
-    items_per_page = 10
+    items_per_page = 12
     page_number = request.GET.get('page', 1)
     p = Paginator(items, items_per_page)
     
@@ -67,6 +91,10 @@ def products(request):
     return render(request, 'core/products.html', context)
 
 def detail(request, pk):
+    """
+    Display the details of a product and related items.
+    """
+
     item = get_object_or_404(Item, pk=pk)
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
     items = Item.objects.filter(category=item.category, is_sold=False)[4:]
@@ -76,10 +104,15 @@ def detail(request, pk):
 		'related_items':related_items,
         'items':items
 	}
+
     return render(request, 'core/detail.html', context)
 
 @login_required
 def dashboard(request):
+    """
+    Display the user's dashboard with their items.
+    """
+
     items = Item.objects.filter(created_by=request.user).order_by('-created_at')
     query = request.GET.get('query', '')
     selected_category_name = 'My Items'
@@ -115,6 +148,10 @@ def dashboard(request):
 
 @login_required
 def new(request):
+    """
+    Create a new item listing.
+    """
+
     if request.method == 'POST':
         form = NewItemForm(request.POST, request.FILES)
         if form.is_valid():
@@ -131,6 +168,10 @@ def new(request):
       
 @login_required
 def edit(request, pk):
+    """
+    Edit an existing item listing.
+    """
+
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
     if request.method == 'POST':
         form = EditItemForm(request.POST, request.FILES, instance=item)
@@ -146,6 +187,10 @@ def edit(request, pk):
 
 @login_required
 def delete(request, pk):
+    """
+    Delete an item listing.
+    """
+
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
     if request.method == 'POST':
         item.delete()
@@ -154,6 +199,10 @@ def delete(request, pk):
     return render(request, 'core/confirmation.html', {'item': item})
 
 def loginPage(request):
+    """
+    Render the login page and authenticate user.
+    """
+
     if request.user.is_authenticated:
         return redirect('core:home')
 
@@ -169,14 +218,13 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            print('Y')
             login(request, user)
             return redirect('core:home')
         else:
-            print('X')
             messages.error(request, 'Username OR password does not exit')
 
     context = {}
+
     return render(request, 'core/login.html', context)
 
 # def loginPage(request):
@@ -209,10 +257,18 @@ def loginPage(request):
 #     return render(request, 'core/login.html', context)
 
 def logoutUser(request):
+    """
+    Log out the user and redirect to the home page.
+    """
+
     logout(request)
     return redirect('/')
 
 def signup(request):
+    """
+    Handle user registration and redirect to the home page upon success.
+    """
+
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -227,6 +283,10 @@ def signup(request):
     return render(request, 'core/signup.html', context)
 
 def userProfile(request, pk):
+    """
+    Display user profile and their comments.
+    """
+
     user = User.objects.get(id=pk)
     comments = Comments.objects.filter(seller=user)
     context = {'user':user, 'comments':comments}
@@ -235,6 +295,10 @@ def userProfile(request, pk):
 
 @login_required
 def updateUser(request):
+    """
+    Update user profile information.
+    """
+
     user = request.user
     form = UserForm(instance=user)
 
@@ -248,6 +312,10 @@ def updateUser(request):
 
 @login_required
 def rate_and_comment(request, pk):
+    """
+    Allow users to rate and comment on other users profiles.
+    """
+
     user = get_object_or_404(User, id=pk)
     
     if request.method == 'POST':
@@ -275,9 +343,12 @@ def rate_and_comment(request, pk):
   
     return redirect('core:profile', pk=user.id)
 
-
 @login_required
 def new_conversation(request, item_pk):
+    """
+    Create a new conversation for an item and redirect to it.
+    """
+
     item = get_object_or_404(Item, pk=item_pk)
     if item.created_by == request.user:
         return redirect('core:dashboard')
@@ -312,6 +383,10 @@ def new_conversation(request, item_pk):
 
 @login_required
 def inbox(request):
+    """
+    Display the user's inbox with conversations.
+    """
+
     conversations = Conversation.objects.filter(members__in=[request.user.id])
 
     return render(request, 'core/inbox.html', {
@@ -320,6 +395,10 @@ def inbox(request):
 
 @login_required
 def messageDetail(request, pk):
+    """
+    Display the details of a conversation and allow sending messages.
+    """
+
     conversation = Conversation.objects.filter(members__in=[request.user.id]).get(pk=pk)
 
     if request.method == 'POST':
@@ -343,10 +422,18 @@ def messageDetail(request, pk):
     })
 
 def deleteComment(request, pk):
+    """
+    Delete a user comment and redirect to their profile.
+    """
+
     comment = get_object_or_404(Comments, pk=pk)
     comment.delete()
     return redirect('core:profile', comment.seller.id)
     
     
 def about(request):
+    """
+    Render the About page.
+    """
+
     return render(request, 'core/about.html')
