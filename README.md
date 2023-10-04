@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="30%" src="/logo.png">
+    <img width="30%" src="/logo3.png">
     
 # RedStore
 </div>
