@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="30%" src="/logo.png">
+    <img width="30%" src="/logo-white.png">
     
 # RedStore
 </div>
@@ -41,22 +41,3 @@ pip install -r requirements.txt
 # Run the app
 python manage.py runserver
 The development server will start at http://127.0.0.1:8000/.
-
-## App Preview
-
-<table width="100%">
-<tr>
-<td width="50%">
-<p align="center">
-  Image 1
-</p>
-<img src="/" alt="Image 1">
-</td>
-<td width="50%">
-<p align="center">
-  Image 2
-</p>
-<img src="/" alt="Image 2">
-</td>
-</tr>
-</table>
