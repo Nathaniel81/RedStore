@@ -5,6 +5,7 @@ from .models import User
 
 from .models import Item, ConversationMessage
 
+# CSS styles for input fields
 INPUT_STYLES = 'width: 100%; height: 30px; margin: 10px 0; padding: 0 10px; border: 1px solid #ccc;'
 CONVO_STYLES = 'width: 100%; height: 100px; margin: 10px 0; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px;'
 
@@ -20,6 +21,9 @@ CONVO_STYLES = 'width: 100%; height: 100px; margin: 10px 0; padding: 10px; font-
 #     }))
 
 class SignUpForm(UserCreationForm):
+    """
+    User registration form.
+    """
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
@@ -42,6 +46,9 @@ class SignUpForm(UserCreationForm):
     }))
 
 class UserForm(forms.ModelForm):
+    """
+    User profile update form.
+    """
     class Meta:
         model = User
         fields = ('avatar', 'name', 'username', 'email', 'bio', 'instagram', 'facebook', 'whatsup', 'twitter',)
@@ -53,6 +60,9 @@ class UserForm(forms.ModelForm):
         self.fields['username'].help_text = None
 
 class NewItemForm(forms.ModelForm):
+    """
+    Form for creating a new item.
+    """
     class Meta:
         model = Item
         fields = ('category', 'name', 'description', 'price', 'image1', 'image2', 'image3', 'image4',)
@@ -60,10 +70,10 @@ class NewItemForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['description'].widget.attrs['class'] = 'description-width'
-
-
-
 class EditItemForm(forms.ModelForm):
+    """
+    Form for editing an existing item.
+    """
     class Meta:
         model = Item
         fields = ('name', 'description', 'price', 'image1', 'image2', 'image3', 'image4', 'is_sold',)
@@ -77,6 +87,9 @@ class EditItemForm(forms.ModelForm):
             self.fields[field_name].widget.clear_checkbox_label = ''
         
 class ConversationMessageForm(forms.ModelForm):
+    """
+    Form for sending a message in a conversation.
+    """
     class Meta:
         model = ConversationMessage
         fields = ('content',)

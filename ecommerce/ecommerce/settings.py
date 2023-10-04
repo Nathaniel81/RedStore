@@ -94,10 +94,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'RedStore',
-        'USER': 'Nate',  # Use 'USER', not 'User'
-        'PASSWORD': 'Nate',  # Use 'PASSWORD', not 'Password'
-        'HOST': 'localhost',  # You may need to specify the host as well
-        'PORT': '5432',  # Use the default PostgreSQL port (5432)
+        'USER': 'Nate',
+        'PASSWORD': 'Nate',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
