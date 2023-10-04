@@ -1,7 +1,5 @@
 <div align="center">
-    <img width="30%" src="/logo3.png">
-    
-# RedStore
+    <img width="30%" src="/logo-white1.png">
 </div>
 
 ## Table of Contents
@@ -13,7 +11,7 @@
 
 ## Introduction
 
-Welcome to Our RedStore! RedStore simplifies buying and selling, allowing users to create accounts, list items, and connect with ease. Key features include seller ratings, secure transactions, and a diverse product range. This platform bridges buyers and sellers, enabling trust and informed choices, resulting in a seamless online transaction experience. Technologies used include HTML, CSS, JavaScript, Django, and PostgreSQL. Join RedStore today for an enhanced buying and selling experience!
+Welcome to RedStore! RedStore simplifies buying and selling, allowing users to create accounts, list items, and connect with ease. Key features include seller ratings, secure transactions, and a diverse product range. This platform bridges buyers and sellers, enabling trust and informed choices, resulting in a seamless online transaction experience. Technologies used include HTML, CSS, JavaScript, Django, and PostgreSQL. Join RedStore today for an enhanced buying and selling experience!
 
 ## Installation
 
@@ -41,22 +39,3 @@ pip install -r requirements.txt
 # Run the app
 python manage.py runserver
 The development server will start at http://127.0.0.1:8000/.
-
-## App Preview
-
-<table width="100%">
-<tr>
-<td width="50%">
-<p align="center">
-  Image 1
-</p>
-<img src="/" alt="Image 1">
-</td>
-<td width="50%">
-<p align="center">
-  Image 2
-</p>
-<img src="/" alt="Image 2">
-</td>
-</tr>
-</table>
