@@ -59,7 +59,9 @@
 			{% for item in related_items %}
 			<div class="col-4">
 					<a href="{% url 'core:detail' item.id %}">
-						<img src="{{ item.imageURL1 }}" alt="">
+						<div class="image-container">
+                    		<img src="{{ item.imageURL1 }}" alt="">
+                		</div>
 						<h4>{{ item.name }}</h4>
 						<p>${{ item.price }}</p>
 					</a>
