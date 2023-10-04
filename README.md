@@ -1,7 +1,5 @@
 <div align="center">
     <img width="30%" src="/logo-white.png">
-    
-# RedStore
 </div>
 
 ## Table of Contents
