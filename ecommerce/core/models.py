@@ -1,5 +1,7 @@
 """
-Database Models for Your RedStore.
+Module: core.models
+
+This module defines custom models used in the RedStore.
 """
 
 
@@ -7,11 +9,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 
-
 class EthiopianPhoneNumberField(models.CharField):
     """
     Custom field for Ethiopian phone numbers.
     """
+
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 13
         kwargs['validators'] = [
@@ -26,6 +28,7 @@ class User(AbstractUser):
     """
     Custom User model with additional fields.
     """
+
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     bio = models.TextField(null=True)
@@ -49,6 +52,7 @@ class User(AbstractUser):
         """
         Calculate the average rating for the user.
         """
+
         if self.total_ratings > 0:
             return self.total_rating_points / self.total_ratings
         else:
@@ -58,6 +62,7 @@ class User(AbstractUser):
         """
         Update total ratings and rating points for the user.
         """
+
         ratings = Rating.objects.filter(user=self)
         self.total_ratings = ratings.count()
         self.total_rating_points = sum(rating.rating for rating in ratings)
@@ -67,6 +72,7 @@ class Comments(models.Model):
     """
     Comments model for user interactions.
     """
+
     seller = models.ForeignKey(User, related_name='seller', on_delete=models.CASCADE) 
     created_by = models.ForeignKey(User, related_name='buyers', on_delete=models.CASCADE)
     body = models.TextField(null=True)
@@ -78,6 +84,7 @@ class Rating(models.Model):
     """
     Rating model for user ratings.
     """
+
     user = models.ForeignKey(User, related_name='received_ratings', on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, related_name='rated_by', on_delete=models.CASCADE)
     rating = models.PositiveIntegerField()
@@ -87,6 +94,7 @@ class Category(models.Model):
     """
     Category model for item categorization.
     """
+
     name = models.CharField(max_length=255)
     class Meta:
         ordering = ('name',)
@@ -98,6 +106,7 @@ class Item(models.Model):
     """
     Item model for listing products.
     """
+
     category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -151,6 +160,7 @@ class Conversation(models.Model):
     """
     Conversation model for user interactions.
     """
+
     item = models.ForeignKey(Item, related_name='conversations', on_delete=models.CASCADE)
     members = models.ManyToManyField(User, related_name='conversations')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -163,6 +173,7 @@ class ConversationMessage(models.Model):
     """
     ConversationMessage model for messages in conversations.
     """
+
     conversation = models.ForeignKey(Conversation, related_name='messages', on_delete=models.CASCADE)
     content = models.TextField()
     created_at =  models.DateTimeField(auto_now_add=True)
@@ -172,6 +183,7 @@ class Testimonial(models.Model):
     """
     Testimonial model for user testimonials.
     """
+
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)

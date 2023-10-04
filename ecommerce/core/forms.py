@@ -1,5 +1,16 @@
 """
 Django Forms for User Authentication and Data Input
+
+This module contains Django forms used for user authentication, registration, and user profile
+data input. Additionally, it includes forms for creating, editing, and messaging in the context
+of items and conversations in the application.
+
+Classes:
+    - SignUpForm: User registration form.
+    - UserForm: User profile update form.
+    - NewItemForm: Form for creating a new item.
+    - EditItemForm: Form for editing an existing item.
+    - ConversationMessageForm: Form for sending a message in a conversation.
 """
 
 
@@ -75,6 +86,7 @@ class NewItemForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['description'].widget.attrs['class'] = 'description-width'
+
 class EditItemForm(forms.ModelForm):
     """
     Form for editing an existing item.
