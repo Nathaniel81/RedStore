@@ -29,10 +29,12 @@ def landing(request):
     """
 
     items = Item.objects.filter(is_sold=False).order_by('-created_at')[0:6]
+    featured = Item.objects.filter(featured=True)
     categories = Category.objects.all()
 
     context = {
 		'items':items,
+        'featured': featured,
 		'categories':categories
 	}
 
@@ -44,12 +46,14 @@ def index(request):
     """
 
     items = Item.objects.filter(is_sold=False).order_by('-created_at')[0:6]
+    featured = Item.objects.filter(featured=True)
     categories = Category.objects.all()
 
     context = {
-        'items': items,
-        'categories': categories
-    }
+		'items':items,
+        'featured': featured,
+		'categories':categories
+	}
 
     return render(request, 'core/index.html', context)
 
@@ -171,8 +175,9 @@ def edit(request, pk):
     """
     Edit an existing item listing.
     """
-
+    name = 'Edit Item'
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
+
     if request.method == 'POST':
         form = EditItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
@@ -181,7 +186,7 @@ def edit(request, pk):
     else:
         form = EditItemForm(instance=item)
     
-    context = {'form': form, 'pk':pk}
+    context = {'form': form, 'pk':pk, 'name': name}
     
     return render(request, 'core/item-form.html', context)
 

@@ -100,58 +100,17 @@
 	<div class="small-container">
 		<h2 class="title">Featured Products</h2>
 		<div class="row" data-aos="zoom-in">
+			{% for item in featured %}
 			<div class="col-4">
-				<img src= "{% static 'images/product-1.jpg' %}" alt="">
-				<h4>Red Printed Tshirt</h4>
-				<!-- <div class="rating">
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star-o"></i>
-				</div> -->
-				<p>$50.00</p>
+				<a href="{% url 'core:detail' item.id %}">
+					<div class="image-container">
+						<img src="{{ item.imageURL1 }}" alt="">
+					</div>
+					<h4>{{ item.name }}</h4>
+					<p>${{ item.price }}</p>
+				</a>
 			</div>
-			<div class="col-4">
-				<img src="{% static 'images/product-2.jpg' %}" alt="">
-				<h4>Red Printed Tshirt</h4>
-				<!-- <div class="rating">
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star-o"></i>
-				</div> -->
-				<p>$50.00</p>
-			</div>
-			<div class="col-4">
-				<img src="{% static 'images/product-3.jpg' %}" alt="">
-				<h4>Red Printed Tshirt</h4>
-				<!-- <div class="rating">
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star-o"></i>
-				</div> -->
-				<p>$50.00</p>
-			</div>
-			<div class="col-4">
-				<img src="{% static 'images/product-4.jpg' %}" alt="">
-				<h4>Red Printed Tshirt</h4>
-				<!-- <div class="rating">
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star-o"></i>
-				</div> -->
-				<p>$50.00</p>
-			</div>
+			{% endfor %}
 		</div>
 		<h2 class="title">Latest Products</h2>
 		<div class="row" data-aos="zoom-in">

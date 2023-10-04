@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% block title %}New Item {% endblock %}
+{% block title %}{% if name %}{{ name }} {% else %}New Item {% endif %}{% endblock %}
 
 {% block content %}
 
