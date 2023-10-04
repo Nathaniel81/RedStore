@@ -11,7 +11,7 @@
 
 ## Introduction
 
-Welcome to Our RedStore! RedStore simplifies buying and selling, allowing users to create accounts, list items, and connect with ease. Key features include seller ratings, secure transactions, and a diverse product range. This platform bridges buyers and sellers, enabling trust and informed choices, resulting in a seamless online transaction experience. Technologies used include HTML, CSS, JavaScript, Django, and PostgreSQL. Join RedStore today for an enhanced buying and selling experience!
+Welcome to RedStore! RedStore simplifies buying and selling, allowing users to create accounts, list items, and connect with ease. Key features include seller ratings, secure transactions, and a diverse product range. This platform bridges buyers and sellers, enabling trust and informed choices, resulting in a seamless online transaction experience. Technologies used include HTML, CSS, JavaScript, Django, and PostgreSQL. Join RedStore today for an enhanced buying and selling experience!
 
 ## Installation
 
