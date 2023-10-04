@@ -166,7 +166,6 @@ nav ul li a {
 
 /*========== small-container ==========*/
 
-
 .small-container {
 	max-width: 1080px;
 	margin: auto;
@@ -235,7 +234,6 @@ nav ul li a {
 
 /*========== Categories ==========*/
 
-
 .categories {
 	margin: 70px 0;
 }
@@ -270,7 +268,6 @@ nav ul li a {
 
 /*========== Offer ==========*/
 
-
 .offer {
 	background: radial-gradient(#fff, #ffd6d6);
 	margin-top: 80px;
@@ -287,7 +284,6 @@ small {
 
 
 /*========== Testimonial ==========*/
-
 
 .testimonial {
 	padding-top: 100px;
@@ -323,7 +319,6 @@ small {
 
 
 /*========== Brands ==========*/
-
 
 .brands {
 	margin: 100px auto;
@@ -415,13 +410,6 @@ small {
 	vertical-align: middle;
 	margin-right: 3px;
   }
-
-/* .row-2 {
-	justify-content: space-between;
-	margin: 100px auto 50px;
-} */
-
-
   
   @media only screen and (max-width: 800px) {
 	nav ul {
