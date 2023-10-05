@@ -278,7 +278,9 @@
 			</div>
 		</div>
 	</div>
-
+	<button id="scrollToTopBtn" title="Go to top">
+		<img src="{% static 'images/up-arrow_red.png' %}">
+	</button>
 	<div class="footer">
 		<div class="container">
 			<div class="row">
@@ -342,11 +344,28 @@
 	</script>
 	<script>
 		AOS.init({
-    	duration: 800, // Animation duration in milliseconds
-   		 // offset: 200,   // Offset (in px) from the top of the viewport
-    	// easing: 'ease-in-out', // Easing options: linear, ease, ease-in, ease-out, ease-in-out
-    	// once: true,     // Only animate elements once
+    	duration: 800,
+   		 // offset: 200,
+    	// easing: 'ease-in-out',
+    	// once: true,
   		});
+	</script>
+	<script>
+		var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+		window.onscroll = function () {
+		    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		        scrollToTopBtn.style.display = "block";
+		    } else {
+		        scrollToTopBtn.style.display = "none";
+		    }
+		};
+
+		scrollToTopBtn.addEventListener("click", function () {
+		    window.scrollTo({
+		        top: 0,
+		        behavior: "smooth"
+		    });
+		});
 	</script>
 	  
 </body>
