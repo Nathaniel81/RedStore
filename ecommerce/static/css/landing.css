@@ -243,6 +243,7 @@ nav ul li a {
 	padding: 40px 20px;
 	box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
+	transition: transform 0.5s;
 }
 
 .categories .col-3:hover {
@@ -294,6 +295,7 @@ small {
 	padding: 40px 20px;
 	box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
+	transition: transform 0.5s;
 }
 
 .testimonial .col-3 img {
@@ -354,6 +356,14 @@ small {
 
 #scrollToTopBtn:hover {
     background-color: rgb(219, 213, 213);
+}
+
+.small-arrow {
+	display: none;
+}
+
+.big-arrow {
+	display: inline;
 }
 
 
@@ -451,6 +461,20 @@ small {
 	.menu-icon {
 		display: block;
 		cursor: pointer;
+	}
+	#cp {
+		display: none;
+	}
+	#scrollToTopBtn {
+		bottom: 20px;
+		right: 23px;
+		padding: 10px;
+	}
+	.small-arrow {
+		display: inline;
+	}
+	.big-arrow {
+		display: none;
 	}
 }
 
