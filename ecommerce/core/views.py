@@ -17,6 +17,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
+import random
 from django.contrib.auth import authenticate, login, logout
 
 from .models import User, Category, Item, Conversation, ConversationMessage, Comments, Rating
@@ -25,20 +26,24 @@ from .forms import NewItemForm, EditItemForm, SignUpForm, ConversationMessageFor
 
 def landing(request):
     """
-    Render the landing page with recent items and categories.
+    Render the landing page with random recent items and categories.
     """
 
-    items = Item.objects.filter(is_sold=False).order_by('-created_at')[0:6]
+    latest_items = list(Item.objects.filter(is_sold=False).order_by('-created_at')[0:9])
+
+    random.shuffle(latest_items)
+
     featured = Item.objects.filter(featured=True)
     categories = Category.objects.all()
 
     context = {
-		'items':items,
+        'items': latest_items,
         'featured': featured,
-		'categories':categories
-	}
+        'categories': categories
+    }
 
     return render(request, 'core/landing.html', context)
+
 
 def index(request):
     """
