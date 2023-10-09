@@ -44,7 +44,6 @@ def landing(request):
 
     return render(request, 'core/landing.html', context)
 
-
 def index(request):
     """
     Render the index page with recent items and categories.
@@ -55,9 +54,9 @@ def index(request):
     categories = Category.objects.all()
 
     context = {
-		'items':items,
-        'featured': featured,
-		'categories':categories
+	    'items':items,
+	    'featured': featured,
+	    'categories':categories
 	}
 
     return render(request, 'core/index.html', context)
@@ -78,9 +77,13 @@ def products(request):
         category = Category.objects.get(pk=category_id)
         selected_category_name = category.name
     if query:
-        items = Item.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        items = Item.objects.filter(
+            Q(name__icontains=query) |
+            Q(description__icontains=query) |
+            Q(created_by__username__icontains=query)
+            )
     
-    items_per_page = 12
+    items_per_page = 15
     page_number = request.GET.get('page', 1)
     p = Paginator(items, items_per_page)
     
@@ -109,9 +112,9 @@ def detail(request, pk):
     items = Item.objects.filter(category=item.category, is_sold=False)[4:]
 
     context = {
-		'item':item,
-		'related_items':related_items,
-        'items':items
+	    'item':item,
+	    'related_items':related_items,
+	    'items':items
 	}
 
     return render(request, 'core/detail.html', context)
