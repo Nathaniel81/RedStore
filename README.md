@@ -4,19 +4,19 @@ Welcome to RedStore, a multi-vendor online marketplace designed for ease of use,
 
 ## **Features**
 
-###User Accounts: 
+### User Accounts: 
 
 Users can create accounts to manage their listings and transactions.
 
-###Product Listings:
+### Product Listings:
 
 Sellers can easily list their products with detailed descriptions and images.
 
-###Messaging System: 
+### Messaging System: 
 
 RedStore facilitates communication between sellers and buyers through an integrated messaging feature.
 
-###Seller Ratings: 
+### Seller Ratings: 
 
 Users can rate and review sellers based on their experiences, providing valuable feedback to the community.
 
