@@ -35,6 +35,7 @@ The application will be accessible at http://localhost:8000/ in your web browser
 ## **Learning Journey**
 
 During the development of RedStore, I acquired valuable skills in:
-Creating a multi-vendor online marketplace using HTML, CSS, JavaScript, and Django.
-Implementing user account management, product listings, and messaging features.
-Incorporating seller ratings to enhance user trust and experience.
+
+- Creating a multi-vendor online marketplace using HTML, CSS, JavaScript, and Django.
+- Implementing user account management, product listings, and messaging features.
+- Incorporating seller ratings to enhance user trust and experience.
