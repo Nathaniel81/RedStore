@@ -42,4 +42,4 @@ During the development of RedStore, I acquired valuable skills in:
 
 ## **Live Demo**
 
-Explore the live version of RedStore on [PythonAnywhere](https://redstore.pythonanywhere.com/).
+Explore the live version of RedStore on [redstore.pythonanywhere.com](https://redstore.pythonanywhere.com/).
