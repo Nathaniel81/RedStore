@@ -39,3 +39,7 @@ During the development of RedStore, I acquired valuable skills in:
 - Creating a multi-vendor online marketplace using HTML, CSS, JavaScript, and Django.
 - Implementing user account management, product listings, and messaging features.
 - Incorporating seller ratings to enhance user trust and experience.
+
+## **Live Demo**
+
+Explore the live version of RedStore on [PythonAnywhere](https://redstore.pythonanywhere.com/).
